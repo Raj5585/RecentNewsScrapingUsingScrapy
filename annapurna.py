@@ -31,4 +31,5 @@ class annapurna(scrapy.Spider):
 process = CrawlerProcess()
 process.crawl(annapurna)
 process.start()
-print(news)
+for n in news:
+    print(f'Title:{n["title"]}  date: {n["date"]} \nImage:{n["img_src"]} \nLink: {n["link"]} Newspaper:{n["newspaper"]}\nDescription: {n["description"]}')
