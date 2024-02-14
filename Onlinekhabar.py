@@ -26,8 +26,9 @@ class onlinekhabar(scrapy.Spider):
         title = response.xpath(self.titlePath).get()
         image = response.xpath(self.imagepath).get()
         paragraph = response.xpath(self.paragraphpath).getall()
+        merged_paragraph = ''.join(paragraph)
         date = response.xpath(self.datepath).get()
-        dict = {'Link':response.meta['link'], 'Newspaper' :'Ratopati','Title': title.replace('\n', ''), 'image' : image,'paragraph': paragraph[0:3],'date':date}
+        dict = {'Link':response.meta['link'], 'Newspaper' :'Ratopati','Title': title.replace('\n', ''), 'image' : image,'paragraph': merged_paragraph,'date':date}
         self.data.append(dict)
         print(self.data)
 

@@ -28,11 +28,24 @@ class Ratopati(scrapy.Spider):
         title = response.xpath(self.titlePath).get() 
         image = response.xpath(self.imagepath).get()
         paragraph = response.xpath(self.paragraphpath).getall()
+        merged_paragraph = ''.join(paragraph)
         date = (response.xpath(self.datepath).get()).split(',')
-        dict = {'Link':response.meta['link'], 'Newspaper' :'Ratopati','Title': title.replace('\n', ''), 'image' : image,'paragraph': paragraph[0:3],'date':date[1].replace('\n', '')}
+        dict = {'Link':response.meta['link'], 'Newspaper' :'Ratopati','Title': title.replace('\n', ''), 'image' : image,'paragraph': merged_paragraph,'date':date[1].replace('\n', '')}
         self.data.append(dict)
-
         print(self.data)
         
 
 
+if __name__ == "__main__":
+    from scrapy.crawler import CrawlerProcess
+
+    process = CrawlerProcess({
+        'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'LOG_ENABLED': False,  
+        'LOG_STDOUT': False,   
+    })
+    
+  
+
+    process.crawl(Ratopati)
+    process.start()

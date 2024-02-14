@@ -40,3 +40,6 @@ if __name__ == "__main__":
     process.crawl(annapurna)
     process.start()
     print(news)
+    
+    def ParagraphMerger(lst):
+        lst.split(',')
