@@ -3,11 +3,10 @@ import scrapy
 
 
 
-
 class Ratopati(scrapy.Spider):
     name = 'Ratopati'
 
-    def __init__(self, name: str | None = None, **kwargs: Any):
+    def __init__(self, name: str | None = None, **kwargs):
         super().__init__(name, **kwargs)
         self.start_urls = ['https://www.ratopati.com/']
         self.data = []
