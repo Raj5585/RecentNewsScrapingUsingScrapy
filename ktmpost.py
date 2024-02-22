@@ -71,12 +71,13 @@ class KathmanduPost(scrapy.Spider):
         img_src = response.xpath(self.img_src_xpath).get()
 
         article_data = {
-            'Category': category_text,
-            'Title': title,
-            'Date': formatted_date,
-            'Description': description[:100],
-            'Image Source': img_src,
-            'Link': response.url
+            'category_name': category_text,
+            'title': title,
+            'published_date': formatted_date,
+            'content_description': description[:100],
+            'img_url': img_src,
+            'url': response.url,
+            'newspaper': 'The Kathmandu Post'
         }
 
         self.news.append(article_data)
